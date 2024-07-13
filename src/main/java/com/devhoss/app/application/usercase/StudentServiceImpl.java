@@ -4,16 +4,21 @@ import com.devhoss.app.domain.model.Student;
 import com.devhoss.app.domain.port.in.IStudentServicePort;
 import com.devhoss.app.domain.port.out.IStudentPersistencePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.devhoss.app.domain.exception.StudentNotFoundException;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
+@Component
+//@RequiredArgsConstructor
 public class StudentServiceImpl implements IStudentServicePort {
 
-    private final IStudentPersistencePort _iStudentPersistencePort;
+    @Autowired
+    @Qualifier("impl1")
+    private IStudentPersistencePort _iStudentPersistencePort;
 
     @Override
     public Student findById(Long id) {

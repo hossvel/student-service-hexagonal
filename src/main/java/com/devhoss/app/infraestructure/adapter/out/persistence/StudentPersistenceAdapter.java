@@ -6,11 +6,12 @@ import com.devhoss.app.infraestructure.adapter.out.persistence.mapper.StudentPer
 import com.devhoss.app.infraestructure.adapter.out.persistence.repository.IStudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service("impl1")
 @RequiredArgsConstructor
 public class StudentPersistenceAdapter implements IStudentPersistencePort {
     private final IStudentRepository _iStudentRepository;
@@ -23,7 +24,7 @@ public class StudentPersistenceAdapter implements IStudentPersistencePort {
 
     @Override
     public List<Student> findAll() {
-
+System.out.println("findAll - POSTGRES");
         return _iStudentPersistenceMapper.toStudentList(_iStudentRepository.findAll());
     }
 
