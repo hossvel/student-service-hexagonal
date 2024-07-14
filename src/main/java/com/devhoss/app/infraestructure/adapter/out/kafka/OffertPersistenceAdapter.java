@@ -11,15 +11,14 @@ import org.springframework.stereotype.Service;
 public class OffertPersistenceAdapter  implements IOfferPersistencePort {
 
     @Autowired
-    KafkaTemplate<String, OffertEntity> kafkaTemplate;
+    KafkaTemplate<String, Offer> kafkaTemplate;
 
-
-    private static final String topic = "Topic";
+    private static final String topic = "Topic-student";
 
     @Override
     public Offer createOffer(Offer offer) {
-        OffertEntity offertEntity = new OffertEntity();
-        kafkaTemplate.send(topic, offertEntity);
+        System.out.println("Envio a Topico : " + topic);
+        kafkaTemplate.send(topic, offer);
         return offer;
     }
 
@@ -28,4 +27,20 @@ public class OffertPersistenceAdapter  implements IOfferPersistencePort {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getOfferById'");
     }
+
+   /*
+    @Override
+    public Offer createOffer(Offer offer) {
+        OffertEntity offertEntity = new OffertEntity();
+        kafkaTemplate.send(topic, offertEntity);
+       // kafkaTemplate.send("testtopicreplication3",Integer.valueOf(i),"Mensaje BATCH - " + (i + 1));
+        return offer;
+    }
+
+    @Override
+    public Offer getOfferById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getOfferById'");
+    }
+    */
 }

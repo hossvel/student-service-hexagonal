@@ -21,6 +21,7 @@ public class OfferServiceImpl implements IOfferServicePort {
 
     @Override
     public Offer createOffer(Offer offer) {
+
         return offerpersistenceport.createOffer(calculateActualPrice(offer));
     }
 
