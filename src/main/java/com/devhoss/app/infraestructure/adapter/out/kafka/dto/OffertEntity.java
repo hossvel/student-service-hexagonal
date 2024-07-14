@@ -1,26 +1,52 @@
 package com.devhoss.app.infraestructure.adapter.out.kafka.dto;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class OffertEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstname;
-    private String lastname;
-    private Integer age;
-    private String address;
+    Long id;
+    Long discount;
+    long actualPrice;
+    long originalPrice;
+
+    public OffertEntity() {
+
+    }
+
+
+    @Override
+    public String toString() {
+        return "Offer [id=" + id + ", discount=" + discount + ", actualPrice=" + actualPrice + ", originalPrice="
+                + originalPrice + "]";
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public OffertEntity(Long id, Long discount, long actualPrice, long originalPrice) {
+        this.id = id;
+        this.discount = discount;
+        this.actualPrice = actualPrice;
+        this.originalPrice = originalPrice;
+    }
+    public void setDiscount(Long discount) {
+        this.discount = discount;
+    }
+    public void setActualPrice(long actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+    public void setOriginalPrice(long originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+    public Long getId() {
+        return id;
+    }
+    public Long getDiscount() {
+        return discount;
+    }
+    public long getActualPrice() {
+        return actualPrice;
+    }
+    public long getOriginalPrice() {
+        return originalPrice;
+    }
+
+
+
 
 }

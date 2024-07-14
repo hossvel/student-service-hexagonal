@@ -3,22 +3,33 @@ package com.devhoss.app.infraestructure.adapter.out.kafka;
 import com.devhoss.app.domain.model.Offer;
 import com.devhoss.app.domain.port.out.IOfferPersistencePort;
 import com.devhoss.app.infraestructure.adapter.out.kafka.dto.OffertEntity;
+import com.devhoss.app.infraestructure.adapter.out.kafka.mapper.OfferKafkaMapper;
+import com.devhoss.app.infraestructure.adapter.out.persistence.mapper.StudentPersistenceMapper;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class OffertPersistenceAdapter  implements IOfferPersistencePort {
 
-    @Autowired
-    KafkaTemplate<String, Offer> kafkaTemplate;
+   @Autowired
+    KafkaTemplate<String, OffertEntity> kafkaTemplate;
 
     private static final String topic = "Topic-student";
 
+    public static final org.slf4j.Logger log = LoggerFactory.getLogger(OffertPersistenceAdapter.class);
+
+   // @Autowired
+    private final OfferKafkaMapper _offerKafkaMapper;
     @Override
     public Offer createOffer(Offer offer) {
-        System.out.println("Envio a Topico : " + topic);
-        kafkaTemplate.send(topic, offer);
+
+        OffertEntity offertEntity = _offerKafkaMapper.toOffertEntity(offer);
+        log.info("Envio a Topico : " + offertEntity.toString());
+        kafkaTemplate.send(topic, offertEntity);
         return offer;
     }
 
