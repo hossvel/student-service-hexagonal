@@ -39,19 +39,4 @@ public class OffertPersistenceAdapter  implements IOfferPersistencePort {
         throw new UnsupportedOperationException("Unimplemented method 'getOfferById'");
     }
 
-   /*
-    @Override
-    public Offer createOffer(Offer offer) {
-        OffertEntity offertEntity = new OffertEntity();
-        kafkaTemplate.send(topic, offertEntity);
-       // kafkaTemplate.send("testtopicreplication3",Integer.valueOf(i),"Mensaje BATCH - " + (i + 1));
-        return offer;
-    }
-
-    @Override
-    public Offer getOfferById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOfferById'");
-    }
-    */
 }
